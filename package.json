@@ -1,0 +1,25 @@
+{
+  "name": "jcod-react-parser",
+  "version": "1.0.0",
+  "description": "React Component for parsing JSON/JCOD object to produce an react tree",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nkokla/jcod-react-parser.git"
+  },
+  "keywords": [
+    "jcod",
+    "react",
+    "json",
+    "parser"
+  ],
+  "author": "Nicolas KOKLA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nkokla/jcod-react-parser/issues"
+  },
+  "homepage": "https://github.com/nkokla/jcod-react-parser#readme"
+}
