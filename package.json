@@ -40,6 +40,14 @@
     "eslint-plugin-react-app": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "prettier": "^1.17.0",
-    "prettier-eslint": "^8.8.2"
+    "prettier-eslint": "^8.8.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
