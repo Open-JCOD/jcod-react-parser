@@ -1,11 +1,14 @@
 {
   "name": "jcod-react-parser",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "React Component for parsing JSON/JCOD object to produce an react tree",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "start": "webpack --mode development --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel src --out-file index.js"
+    "build:dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "prepublishOnly": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,9 @@
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
+    "ajv": "^5.5.2",
+    "babel-loader": "^8.0.6",
+    "chokidar-cli": "^1.2.2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-standard": "^12.0.0",
@@ -44,7 +50,9 @@
     "prettier-eslint": "^8.8.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
