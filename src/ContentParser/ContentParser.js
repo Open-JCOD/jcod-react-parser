@@ -35,8 +35,16 @@ export default class ContentParser extends PureComponent {
     const { components, options, spreader } = props
     const pad = `${(options.pad && `${options.pad}-`) || ''}`
 
-    const getRenderChild = (spreader = comp => comp) => (availableComp = {}) =>
+    const getRenderChild = (
+      spreader = (instance, component, data, key) => instance,
+    ) => (availableComp = {}) =>
       function renderChild(child) {
+        if (typeof child === 'string') {
+          const component = '[object Text]'
+          const key = child
+          const data = { component, value: child }
+          return spreader(child, component, data, key)
+        }
         if (typeof child === 'object') {
           const { component, key, props: childProps } = child
           const Component =
@@ -63,7 +71,7 @@ export default class ContentParser extends PureComponent {
           return Component
             ? spreader(
                 <Component key={key} {...otherProps}>
-                  {childsComponent || children}
+                  {childsComponent || renderChild(children)}
                 </Component>,
                 Component,
                 child,
