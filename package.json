@@ -1,6 +1,6 @@
 {
   "name": "jcod-react-parser",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React Component for parsing JSON/JCOD object to produce an react tree",
   "main": "dist/index.js",
   "scripts": {
