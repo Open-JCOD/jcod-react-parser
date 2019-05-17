@@ -103,6 +103,8 @@ ReactDOM.render(
 
 ```
 
+You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jcod-sample-with-react-kqj75?fontsize=14)
+
 ### Props description
 
 #### The JcodReactParser require these props :
