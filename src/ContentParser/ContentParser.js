@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { paramCase } from 'change-case'
+import paramCase from 'param-case'
 
 const componentType = PropTypes.shape({
   key: PropTypes.string.isRequired,
@@ -13,9 +13,9 @@ export default class ContentParser extends PureComponent {
     data: PropTypes.arrayOf(componentType).isRequired,
     components: PropTypes.object,
     options: PropTypes.shape({
-      pad: PropTypes.string,
-      element: PropTypes.bool,
-      CustomElement: PropTypes.bool,
+      useValidCustomElementName: PropTypes.bool,
+      htmlElement: PropTypes.bool,
+      customElement: PropTypes.bool,
     }),
     spreader: PropTypes.func,
   }
@@ -24,16 +24,20 @@ export default class ContentParser extends PureComponent {
     data: [],
     components: {},
     options: {
-      element: true,
-      CustomElement: false,
+      useValidCustomElementName: false, // http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name
+      htmlElement: false,
+      customElement: false,
     },
   }
 
   constructor(props) {
     super(props)
 
-    const { components, options, spreader } = props
-    const pad = `${(options.pad && `${options.pad}-`) || ''}`
+    const { components, options: instanceOptions, spreader } = props
+    const options = {
+      ...ContentParser.defaultProps.options,
+      ...instanceOptions,
+    }
 
     const getRenderChild = (
       spreader = (instance, component, data, key) => instance,
@@ -47,17 +51,25 @@ export default class ContentParser extends PureComponent {
         }
         if (typeof child === 'object') {
           const { component, key, props: childProps } = child
+          const isHtmlElementCompatible =
+            component.search(/(?:[A-Z]+)|(?:-+)/) < 0
+          const isCustomElementCompatible = component.search(/-+/) >= 0
           const Component =
             availableComp[component] ||
-            (component.search(/[A-Z]+/) < 0 &&
-              (((options.CustomElement && component.search(/-+/) >= 0) ||
-                options.element) &&
-                component))
+            (options.customElement && isCustomElementCompatible && component) ||
+            (options.htmlElement && isHtmlElementCompatible && component)
 
           if (!Component) {
-            console.error(
-              `${component} can not be rendered: \n it is not an available component.`,
+            const errorMessage = [].concat(
+              `[${component}] can not be rendered: \n  it is not an available component.`,
+              isHtmlElementCompatible
+                ? `\n> [${component}] seems to be a [HTML Element <${component}>]. \n  Maybe should you set the 'htmlElement' option to true ?`
+                : [],
+              isCustomElementCompatible
+                ? `\n> [${component}] seems to be a [Custom Element <${component}>]. \n  Maybe should you set the 'customElement' option to true ?`
+                : [],
             )
+            console.error(...errorMessage)
           }
 
           const { children, ...otherProps } = childProps
@@ -83,17 +95,21 @@ export default class ContentParser extends PureComponent {
         return child
       }
 
-    const paramCaseComponents = Object.entries(components).reduce(
-      (acc, [key, comp]) => {
-        const paramKey = paramCase(key)
+    const translatedComponents = Object.entries(components).reduce(
+      (acc, [componentInitName, component]) => {
+        const { useValidCustomElementName } = options
+        const componentKeyName = useValidCustomElementName
+          ? paramCase(componentInitName)
+          : componentInitName
+        const componentName = `${componentKeyName}`
         return {
           ...acc,
-          [`${(!/-/i.test(paramKey) && pad) || ''}${paramKey}`]: comp,
+          [componentName]: component,
         }
       },
       {},
     )
-    this.renderChild = getRenderChild(spreader)(paramCaseComponents)
+    this.renderChild = getRenderChild(spreader)(translatedComponents)
   }
 
   render() {
