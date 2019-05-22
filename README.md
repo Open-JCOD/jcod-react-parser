@@ -52,7 +52,7 @@ const sampleOf_JCOD = [
 
 import the JcodParser and use like any other React component :
 
-```JSX
+```JavaScript
 import JcodParser from 'jcod-react-parser'
 
 // [...]
@@ -69,7 +69,7 @@ const myFunctionalComponent = () => (
 
 Here a sample of very lite React application :
 
-```JSX
+```JavaScript
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -131,7 +131,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
 
     or a very simple import :
 
-    ```JSX
+    ```JavaScript
     import * as availableComponents from './anyOtherFolder'
 
     [...]
@@ -167,7 +167,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
         -   If is `true`, so `customElement` and `htmlElement` are also `true`
         -   If is `Array` of `string`, each value of this array can be use as valid tag of `customElement` or `htmlElement`.
 
-            ```JSX
+            ```JavaScript
             import { MyComponent, MyOtherComponent } from './myTemplatesComponentsFolder'
             const availableComponent = { MyComponent, MyOtherComponent }
 
@@ -228,7 +228,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
 
 *   `spreader` : A function who receive the instance, component, JCOD data and key of each component declared in the JCOD object and who return a component. The Spreader can be is use/thinked like an High Order Component (HOC) for extend or overload the components. The Spreader can be use for debug or any clever use you could imagine.
 
-    ```JSX
+    ```JavaScript
     const sampleOfSpreader = (instance, component, data, key) => (
     <MyHigOrderComponent data={data} component={component} key={key}>
         {instance}
@@ -238,7 +238,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
 
 #### Sample of usage of all props :
 
-```JSX
+```JavaScript
 [...]
 
 ReactDOM.render(
