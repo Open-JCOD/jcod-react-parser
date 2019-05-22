@@ -78,20 +78,22 @@ import JcodParser from 'jcod-react-parser'
 import { MyComponent, MyOtherComponent } from './myTemplatesComponentsFolder'
 const availableComponent = { MyComponent, MyOtherComponent }
 
-const jcodData = {
+const jcodData = [
     {
         key: 'comp-1',
         component: 'MyComponent',
         props: {
             children: 'Any test',
         },
+    },
+    {
         key: 'comp-2',
         component: 'MyOtherComponent',
         props: {
             children: 'Any test',
         },
     },
-}
+]
 
 ReactDOM.render(
     <JcodParser
@@ -154,42 +156,77 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
     {
         "customElement": [boolean (default to false)],
         "htmlElement": [boolean (default to false)],
-        "useValidCustomElementName": [boolean (default to false)],
+        "allowElements": [boolean || Array (default to false)],
     }
     ```
 
-    -   If `customElement` is true, you can use any [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) tag as component in you JCOD object. (Disclaimer: With this option, you lose any warning about the usage of an unrecognized component).
-    -   If `htmlElement` is true, you can use any valid HTML tag as component in you JCOD object.
-    -   If `useValidCustomElementName` is true, all the name of components in the object provided of `components` require prop will be translate to a [valid custom element name](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) and it is this valid name who should use in the `data` require prop :
+    -   If `customElement` is `true`, you can use any [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) tag as component in you JCOD object. The names of the custom elements must respect the [naming convention](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name). (If `allowElements` is `true`, this value is override and is also `true`)
+    -   If `htmlElement` is `true`, you can use any valid HTML tag as component in you JCOD object. (If `allowElements` is `true`, this value is override and is also `true`)
+    -   If `allowElements` :
 
-    ```JSX
-    import { MyComponent, MyOtherComponent } from './myTemplatesComponentsFolder'
-    const availableComponent = { MyComponent, MyOtherComponent }
+        -   If is `true`, so `customElement` and `htmlElement` are also `true`
+        -   If is `Array` of `string`, each value of this array can be use as valid tag of `customElement` or `htmlElement`.
 
-    const jcodData = {
-        {
-            key: 'comp-1',
-            component: 'my-component', // `MyComponent` in `availableComponent`
-            props: {
-                children: 'Any test',
-            },
-            key: 'comp-2',
-            component: 'my-other-component', // `MyOtherComponent` in `availableComponent`
-            props: {
-                children: 'Any test',
-            },
-        },
-    }
+            ```JSX
+            import { MyComponent, MyOtherComponent } from './myTemplatesComponentsFolder'
+            const availableComponent = { MyComponent, MyOtherComponent }
 
-    const jcodContent = (
-        <JcodParser
-            components={availableComponents}
-            data={jcodData}
-        />
-    )
-    ```
+            const parserOption = {
+                allowElements: ['section', 'my-custom-element']
+            }
 
--   `spreader` : A function who receive the instance, component, JCOD data and key of each component declared in the JCOD object and who return a component. The Spreader can be is use/thinked like an High Order Component (HOC) for extend or overload the components. The Spreader can be use for debug or any clever use you could imagine.
+            const jcodData = [
+                {
+                    {
+                        key: 'comp-1',
+                        component: 'myComponent',
+                        props: {
+                            children: 'Any test 1',
+                        }
+                    },
+                    {
+                        key: 'comp-2',
+                        component: 'myOtherComponent',
+                        props: {
+                            children: 'Any test 2',
+                        },
+                    },
+                    {
+                        key: 'comp-3',
+                        component: 'my-custom-element', // valid custom element tag
+                        props: {
+                            children: 'It is a custom element',
+                        },
+                    },
+                    {
+                        key: 'comp-4',
+                        component: 'section', // valid element tag
+                        props: {
+                            children: 'It is an element',
+                        },
+                    },
+                    {
+                        key: 'comp-4',
+                        component: 'div', // invalid element tag
+                        props: {
+                            children: 'It is a not display element',
+                        },
+                    },
+                },
+            ]
+
+            const jcodContent = (
+                <JcodParser
+                    components={availableComponents}
+                    data={jcodData}
+                    options={parserOption}
+                />
+            )
+            ```
+
+    -   If `useValidCustomElementName` is `true`, all the name of components in the object provided of `components` require prop will be translate to a [valid custom element name](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) and it is this valid name who should use in the `data` require prop :
+
+*   `spreader` : A function who receive the instance, component, JCOD data and key of each component declared in the JCOD object and who return a component. The Spreader can be is use/thinked like an High Order Component (HOC) for extend or overload the components. The Spreader can be use for debug or any clever use you could imagine.
 
     ```JSX
     const sampleOfSpreader = (instance, component, data, key) => (
