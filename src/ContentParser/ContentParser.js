@@ -1,6 +1,5 @@
 import React, { Fragment, PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import paramCase from 'param-case'
 
 const componentType = PropTypes.shape({
   key: PropTypes.string.isRequired,
@@ -13,7 +12,7 @@ export default class ContentParser extends PureComponent {
     data: PropTypes.arrayOf(componentType).isRequired,
     components: PropTypes.object,
     options: PropTypes.shape({
-      useValidCustomElementName: PropTypes.bool,
+      allowElements: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
       htmlElement: PropTypes.bool,
       customElement: PropTypes.bool,
     }),
@@ -24,9 +23,9 @@ export default class ContentParser extends PureComponent {
     data: [],
     components: {},
     options: {
-      useValidCustomElementName: false, // http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name
       htmlElement: false,
-      customElement: false,
+      customElement: false, // http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name
+      allowElements: false,
     },
   }
 
@@ -38,6 +37,13 @@ export default class ContentParser extends PureComponent {
       ...ContentParser.defaultProps.options,
       ...instanceOptions,
     }
+
+    if (options.allowElements === true) {
+      options.customElement = true
+      options.htmlElement = true
+    }
+    if (!Array.isArray(options.allowElements)) options.allowElements = []
+    console.log('options.allowElements', options.allowElements)
 
     const getRenderChild = (
       spreader = (instance, component, data, key) => instance,
@@ -56,6 +62,7 @@ export default class ContentParser extends PureComponent {
           const isCustomElementCompatible = component.search(/-+/) >= 0
           const Component =
             availableComp[component] ||
+            (options.allowElements.includes(component) && component) ||
             (options.customElement && isCustomElementCompatible && component) ||
             (options.htmlElement && isHtmlElementCompatible && component)
 
@@ -95,20 +102,15 @@ export default class ContentParser extends PureComponent {
         return child
       }
 
-    const translatedComponents = Object.entries(components).reduce(
-      (acc, [componentInitName, component]) => {
-        const { useValidCustomElementName } = options
-        const componentKeyName = useValidCustomElementName
-          ? paramCase(componentInitName)
-          : componentInitName
-        const componentName = `${componentKeyName}`
-        return {
-          ...acc,
-          [componentName]: component,
-        }
-      },
-      {},
-    )
+    // TODO : Add support if 'components' is Map
+    const translatedComponents = Object.fromEntries
+      ? Object.fromEntries(Object.entries(components))
+      : Object.entries(components).reduce((acc, [componentName, component]) => {
+          return {
+            ...acc,
+            [componentName]: component,
+          }
+        }, {})
     this.renderChild = getRenderChild(spreader)(translatedComponents)
   }
 
