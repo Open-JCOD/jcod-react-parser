@@ -49,7 +49,7 @@ const sampleOf_JCOD = [
 
 import the JcodParser and use like any other React component:
 
-```JavaScript
+```javascript
 import JcodParser from 'jcod-react-parser'
 
 // [...]
@@ -126,7 +126,7 @@ The jcod-react-parser use an extended version of JCOD node, with some specifical
 
 Here a sample of very lite React application:
 
-```JavaScript
+```javascript
 import React from 'react'
 import ReactDOM from 'react-dom'
 import JcodParser from 'jcod-react-parser'
@@ -149,11 +149,8 @@ const jcodData = [
 ]
 
 ReactDOM.render(
-    <JcodParser
-        components={availableComponent}
-        data={jcodData}
-    />,
-    document.getElementById('App')
+    <JcodParser components={availableComponent} data={jcodData} />,
+    document.getElementById('App'),
 )
 ```
 
@@ -167,9 +164,12 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
 
     Here a sample of available components:
 
-    ```JavaScript
+    ```javascript
     import AnyComponent from 'anyFolder'
-    import { LittleComponent, OtherComponent } from './myTemplatesComponentsFolder'
+    import {
+        LittleComponent,
+        OtherComponent,
+    } from './myTemplatesComponentsFolder'
     // Or so simply - In this sample `myComponents` could be use directly as value of `components` props:
     import * as myComponents from './anyOtherFolder'
 
@@ -183,7 +183,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
 
     or a very simple import:
 
-    ```JavaScript
+    ```javascript
     import * as availableComponents from './anyOtherFolder'
 
     [...]
@@ -211,7 +211,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
     -   Custome Element: Name in lowercase and 2 or more words, each seprate by an hyphen. (See [valid custom element name documentation](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name))
     -   HTML element: Name in lowercase and in only one word.
 
-    ```JavaScript
+    ```javascript
     {
         "allowUnsecureElements": [boolean || Array (default to false)],
         "allowUnsecureHtmlElement": [boolean (default to false)],
@@ -229,7 +229,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
         -   is `true`, so `allowUnsecureCustomElement` and `allowUnsecureHtmlElement` are also `true`.
         -   is `Array` of `string`, each value of this array can be use as valid tag of `allowUnsecureCustomElement` or `allowUnsecureHtmlElement`.
 
-            ```JavaScript
+            ```javascript
             import { MyComponent, MyOtherComponent } from './myTemplatesComponentsFolder'
             const availableComponent = { MyComponent, MyOtherComponent }
 
@@ -324,7 +324,7 @@ You can see an [integration sample on Code Sandbox](https://codesandbox.io/s/jco
 
 #### Sample of usage of all props:
 
-```JavaScript
+```javascript
 [...]
 
 ReactDOM.render(
