@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[ContentParser] Ennable the parser & render of JCOD tree. Should render ReactComponent and HTML element a simple JCOD tree without crash 1`] = `
+Array [
+  "string node",
+  <div />,
+  <div
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </div>,
+  <div />,
+  <div
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </div>,
+]
+`;
+
+exports[`[ContentParser] Ennable the parser & render of JCOD tree. Should render ReactComponent and custom-element a simple JCOD tree without crash 1`] = `
+Array [
+  "string node",
+  <custom-element />,
+  <custom-element
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </custom-element>,
+  <div />,
+  <div
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </div>,
+]
+`;
+
+exports[`[ContentParser] Ennable the parser & render of JCOD tree. Should render ReactComponent, HTML element and custom-element a simple JCOD tree without crash 1`] = `
+Array [
+  "string node",
+  <div />,
+  <div
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </div>,
+  <custom-element />,
+  <custom-element
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </custom-element>,
+  <div />,
+  <div
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </div>,
+]
+`;
+
+exports[`[ContentParser] Ennable the parser & render of JCOD tree. Should render only ReactComponent of a JCOD tree without crash 1`] = `
+Array [
+  "string node",
+  <div />,
+  <div
+    anyProps="something as props value"
+    className="class"
+  >
+    Test Children
+  </div>,
+]
+`;
+
+exports[`[ContentParser] Ennable the parser & render of JCOD tree. Should render only String node of a JCOD tree without crash 1`] = `"string node"`;

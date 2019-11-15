@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-const stringerJoin = arrOfString => {
+export const stringerJoin = arrOfString => {
   // return arrOfString.join(', ')
   return arrOfString.reduce((str, entry, index, arr) => {
     if (index === 0) return str + entry
@@ -69,7 +69,9 @@ export default class ContentParser extends PureComponent {
     }
   }
 
-  static FalsyComponent = () => null
+  static FalsyComponent = function FalsyComponent() {
+    return null
+  }
   static getFalsyComponent = (
     component,
     typeOfComponent,
@@ -115,19 +117,18 @@ export default class ContentParser extends PureComponent {
           }. Other values are ignored.`
         : [],
       jcodPropsKey
-        ? `The [props.key] with the value '${jcodPropsKey}' of component [${component} // in position ${jcodPath}] is ignored. The key value, when defined, must be set in the ROOT of JCOD node`
+        ? `The [props.key] with the value '${jcodPropsKey}' of component [${component} // in position ${jcodPath}] is ignored. The key value, when defined, must be set in the ROOT of JCOD node.`
         : [],
       jcodRenderPropsKey
-        ? `The [renderProps.key] with the value '${jcodRenderPropsKey}' of component [${component} // in position ${jcodPath}] is ignored. The key value, when defined, must be set in the ROOT of JCOD node`
+        ? `The [renderProps.key] with the value '${jcodRenderPropsKey}' of component [${component} // in position ${jcodPath}] is ignored. The key value, when defined, must be set in the ROOT of JCOD node.`
         : [],
     )
     errorMessage.length && console.error && console.error(...errorMessage)
   }
 
-  static getComponent = (component, availableComp, options) => {
+  static getComponent = (component, availableComponent = {}, options = {}) => {
     const typeOfComponent = ContentParser.getTypeOfComponent(component)
 
-    // TODO : Use 'this' for options & availableComp ?
     if (options.allowUnsecureElements === true) {
       options.allowUnsecureCustomElement = true
       options.allowUnsecureHtmlElement = true
@@ -136,7 +137,7 @@ export default class ContentParser extends PureComponent {
       options.allowUnsecureElements = []
 
     return (
-      availableComp[component] ||
+      availableComponent[component] ||
       (options.allowUnsecureElements.includes(component) && component) ||
       (options.allowUnsecureCustomElement &&
         typeOfComponent.isCustomElement &&
@@ -232,7 +233,6 @@ export default class ContentParser extends PureComponent {
               {},
             )
 
-            // TODO : Set alert when the 'children' key is set on many zone of the JCOD node
             const childsComponent =
               jcodChildren ||
               childrenRenderProps ||
@@ -243,7 +243,7 @@ export default class ContentParser extends PureComponent {
                       (options.__DEPRECATED__renderAllChildren &&
                         childrenProps),
                   )
-                : childrenProps.toString()
+                : childrenProps && childrenProps.toString()
 
             const instance = (
               <Component key={key} {...renderPropsComponents} {...otherProps}>
