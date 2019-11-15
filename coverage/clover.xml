@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1573349317398" clover="3.2.0">
+  <project timestamp="1573349317399" name="All files">
+    <metrics statements="69" coveredstatements="18" conditionals="84" coveredconditionals="9" methods="20" coveredmethods="5" elements="173" coveredelements="32" complexity="0" loc="69" ncloc="69" packages="1" files="1" classes="1"/>
+    <file name="ContentParser.js" path="/c/Users/nkokl/Project/jcod-react-parser/src/ContentParser/ContentParser.js">
+      <metrics statements="69" coveredstatements="18" conditionals="84" coveredconditionals="9" methods="20" coveredmethods="5"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="6" count="4" type="stmt"/>
+      <line num="7" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="9" count="3" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="25" count="0" type="stmt"/>
+      <line num="26" count="0" type="stmt"/>
+      <line num="31" count="1" type="stmt"/>
+      <line num="52" count="1" type="stmt"/>
+      <line num="65" count="1" type="stmt"/>
+      <line num="66" count="3" type="stmt"/>
+      <line num="72" count="1" type="stmt"/>
+      <line num="73" count="1" type="stmt"/>
+      <line num="78" count="1" type="stmt"/>
+      <line num="87" count="1" type="cond" truecount="3" falsecount="0"/>
+      <line num="88" count="1" type="stmt"/>
+      <line num="91" count="1" type="cond" truecount="0" falsecount="1"/>
+      <line num="92" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="93" count="0" type="stmt"/>
+      <line num="103" count="0" type="stmt"/>
+      <line num="104" count="0" type="stmt"/>
+      <line num="109" count="0" type="stmt"/>
+      <line num="124" count="0" type="cond" truecount="0" falsecount="3"/>
+      <line num="127" count="1" type="stmt"/>
+      <line num="128" count="0" type="stmt"/>
+      <line num="131" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="132" count="0" type="stmt"/>
+      <line num="133" count="0" type="stmt"/>
+      <line num="135" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="136" count="0" type="stmt"/>
+      <line num="138" count="0" type="stmt"/>
+      <line num="152" count="0" type="stmt"/>
+      <line num="154" count="0" type="stmt"/>
+      <line num="155" count="0" type="stmt"/>
+      <line num="160" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="161" count="0" type="stmt"/>
+      <line num="162" count="0" type="stmt"/>
+      <line num="163" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="164" count="0" type="stmt"/>
+      <line num="168" count="0" type="stmt"/>
+      <line num="169" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="170" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="175" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="184" count="0" type="stmt"/>
+      <line num="186" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="187" count="0" type="stmt"/>
+      <line num="191" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="201" count="0" type="stmt"/>
+      <line num="203" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="204" count="0" type="stmt"/>
+      <line num="206" count="0" type="stmt"/>
+      <line num="216" count="0" type="stmt"/>
+      <line num="221" count="0" type="stmt"/>
+      <line num="223" count="0" type="stmt"/>
+      <line num="225" count="0" type="stmt"/>
+      <line num="228" count="0" type="stmt"/>
+      <line num="237" count="0" type="cond" truecount="0" falsecount="5"/>
+      <line num="249" count="0" type="stmt"/>
+      <line num="254" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="259" count="0" type="stmt"/>
+      <line num="268" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="271" count="0" type="stmt"/>
+      <line num="277" count="0" type="stmt"/>
+      <line num="281" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="282" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="284" count="0" type="cond" truecount="0" falsecount="2"/>
+    </file>
+  </project>
+</coverage>
