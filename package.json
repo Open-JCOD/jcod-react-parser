@@ -1,6 +1,6 @@
 {
   "name": "jcod-react-parser",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "React Component for parsing JSON/JCOD object to produce an react tree",
   "main": "dist/index.js",
   "scripts": {
@@ -27,14 +27,14 @@
   },
   "homepage": "https://github.com/nkokla/jcod-react-parser#readme",
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
     "ajv": "^5.5.2",
     "babel-loader": "^8.0.6",
-    "chokidar-cli": "^1.2.3",
+    "chokidar-cli": "^2.1.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^12.0.0",
@@ -58,6 +58,5 @@
     "prop-types": "^15.x.x",
     "react": "^16.8.x",
     "react-dom": "^16.8.x"
-  },
-  "dependencies": {}
+  }
 }
